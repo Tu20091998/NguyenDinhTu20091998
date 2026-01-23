@@ -1,0 +1,12 @@
+{
+    "name": "lab2/mvc-simple",
+    "description": "MVC Simple PHP Project",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core/",
+            "App\\": "app/"
+        }
+    },
+    "require": {}
+}

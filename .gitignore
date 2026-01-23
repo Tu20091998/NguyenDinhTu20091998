@@ -1,0 +1,4 @@
+# Chặn tất cả các thư mục vendor ở bất kỳ cấp nào
+vendor/
+.env
+.vscode/
