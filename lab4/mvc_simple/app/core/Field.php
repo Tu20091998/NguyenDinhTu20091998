@@ -61,11 +61,11 @@
         public function labels()
         {
             return [
-                'firstname' => 'First name',
-                'lastname' => 'Last name',
-                'email' => 'Your Email',
-                'password' => 'Password',
-                'confirmPassword' => 'Confirm password',
+                'firstname' => 'Họ',
+                'lastname' => 'Tên',
+                'email' => 'Email',
+                'password' => 'Mật khẩu',
+                'confirmPassword' => 'Xác nhận mật khẩu',
             ];
         }
 

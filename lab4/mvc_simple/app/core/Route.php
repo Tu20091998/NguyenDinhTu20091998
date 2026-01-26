@@ -47,6 +47,7 @@
                     $pattern = str_replace('/', '\/', $path);
                     $pattern = preg_replace('/\{[a-zA-Z]+\}/', '([a-zA-Z0-9-]+)', $pattern);
 
+                    //
                     if (preg_match('/^' . $pattern . '$/', $route, $matches)) {
                         array_shift($matches); // Loại bỏ phần tử đầu tiên (full match)
                         $action = $callback; // Lấy callback tương ứng

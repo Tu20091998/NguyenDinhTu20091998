@@ -2,25 +2,17 @@
     //khai báo composer autoload
     require_once __DIR__ . "/vendor/autoload.php";
 
+    //sử dụng các lớp cần thiết
     use app\Home;
     use app\Invoices;
     use app\core\Route;
+    use app\Controller\UserController;
 
     //tạo đối tượng router
     $router = new Route();
 
-    // Đăng ký route dạng hàm
-    $router->register('/', function() {
-        echo "Chào mừng đến với trang chủ!";
-    });
-
     // Khớp với /product/123 hoặc /product/abc
     $router->register('/product/{id}', function($id) {
-        return "Bạn đang xem sản phẩm có ID là: " . $id;
-    });
-
-    // Khớp với /product/123 hoặc /product/abc
-    $router->register('/users/duy-nguyen', function($id) {
         return "Bạn đang xem sản phẩm có ID là: " . $id;
     });
 
@@ -28,7 +20,11 @@
     $router->register('/home', [Home::class, 'index']);
     $router->register('/invoices', [Invoices::class, 'index']);
     $router->register('/invoices/create', [Invoices::class, 'create']);
-    
+
+    //đăng ký route cho user controller
+    $router->register('/getAllUsers', [UserController::class, 'getAllUsers']);
+    $router->register('/register', [UserController::class, 'register_user_confirm']);
+
     try {
         // Lấy URI thực tế
         $uri = $_SERVER['REQUEST_URI'];

@@ -40,7 +40,7 @@
             if ($password !== $confirmPassword) {
                 $_GET['error'] = "Mật khẩu xác nhận không khớp.";
                 $this->getAllUsers();
-                return;
+                exit();
             }
 
             //kiểm tra người dùng có tồn tại không
@@ -49,7 +49,7 @@
                 if ($user['email'] === $email) {
                     $_GET['error'] = "Email đã được đăng ký.";
                     $this->getAllUsers();
-                    return;
+                    exit();
                 }
             }
 
@@ -60,14 +60,13 @@
                 if(!$this->userModel){
                     $_GET['error'] = "Đăng ký thất bại ở usermodel.";
                     $this->getAllUsers();
-                    return;
+                    exit();
                 }
 
                 //chuyển hướng về trang đăng ký và thông báo
                 $_GET['success'] = "Đăng ký thành công!";
-
                 $this->getAllUsers();
-                return;
+                exit();
             } catch (\Exception $e) {
                 die("Lỗi đăng ký: " . $e->getMessage());
             }

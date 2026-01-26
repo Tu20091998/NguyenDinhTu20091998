@@ -32,8 +32,10 @@ $form = new Form();
         .auth-wrapper {
             min-height: 100vh;
             display: flex;
-            align-items: center;
+            align-items: start;
             justify-content: center;
+            padding: 3rem;
+
         }
 
         .auth-card {
@@ -79,7 +81,6 @@ $form = new Form();
             background: #fff;
             border-radius: 15px;
             padding: 25px;
-            margin-top: 40px;
             margin-bottom: 1rem;
             box-shadow: 0 12px 30px rgba(0,0,0,0.12);
         }
@@ -91,7 +92,7 @@ $form = new Form();
 <div class="auth-wrapper">
     <div class="auth-card">
 
-        <h1>Create Account</h1>
+        <h1>Tạo tài khoản</h1>
 
         <!-- Thông báo -->
         <?php if (isset($_GET['success'])): ?>
@@ -109,53 +110,53 @@ $form = new Form();
         <?php endif; ?>
 
         <!-- Form -->
-        <?php $form->begin( '/register', 'post'); ?>
+        <?php $form->begin( 'register', 'post'); ?>
 
-        <div class="row">
-            <div class="col-md-6">
-                <?= $form->field('lastname')->placeholder('Nhập họ của bạn') ?>
+            <div class="row">
+                <div class="col-md-6">
+                    <?= $form->field('lastname')->placeholder('Nhập họ của bạn') ?>
+                </div>
+                <div class="col-md-6">
+                    <?= $form->field('firstname')->placeholder('Nhập tên của bạn') ?>
+                </div>
             </div>
-            <div class="col-md-6">
-                <?= $form->field('firstname')->placeholder('Nhập tên của bạn') ?>
-            </div>
-        </div>
-
-        <?= $form->field('email')->placeholder('Nhập email') ?>
-        <?= $form->field('password')->passwordField()->placeholder('Nhập mật khẩu') ?>
-        <?= $form->field('confirmPassword')->passwordField()->placeholder('Nhập lại mật khẩu') ?>
-
-        <?= $form->submitButton('Đăng Ký') ?>
+            
+            <?= $form->field('email')->placeholder('Nhập email') ?>
+            <?= $form->field('password')->passwordField()->placeholder('Nhập mật khẩu') ?>
+            <?= $form->field('confirmPassword')->passwordField()->placeholder('Nhập lại mật khẩu') ?>
+            
+            <?= $form->submitButton('Đăng Ký') ?>
 
         <?php $form->end(); ?>
 
     </div>
-</div>
 
-<!-- Danh sách người dùng -->
-<div class="container">
-    <div class="table-wrapper">
-        <h3 class="mb-3">Danh sách người dùng</h3>
+    <!-- Danh sách người dùng -->
+    <div class="container">
+        <div class="table-wrapper">
+            <h3 class="mb-3">Danh sách người dùng đã tạo tài khoản</h3>
 
-        <table class="table table-hover table-bordered">
-            <thead class="thead-light">
-            <tr>
-                <th>ID</th>
-                <th>Họ</th>
-                <th>Tên</th>
-                <th>Email</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($users as $user): ?>
+            <table class="table table-hover table-bordered">
+                <thead class="thead-light">
                 <tr>
-                    <td><?= htmlspecialchars($user['id']) ?></td>
-                    <td><?= htmlspecialchars($user['lastname']) ?></td>
-                    <td><?= htmlspecialchars($user['firstname']) ?></td>
-                    <td><?= htmlspecialchars($user['email']) ?></td>
+                    <th>ID</th>
+                    <th>Họ</th>
+                    <th>Tên</th>
+                    <th>Email</th>
                 </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <?php foreach ($users as $user): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($user['id']) ?></td>
+                        <td><?= htmlspecialchars($user['lastname']) ?></td>
+                        <td><?= htmlspecialchars($user['firstname']) ?></td>
+                        <td><?= htmlspecialchars($user['email']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

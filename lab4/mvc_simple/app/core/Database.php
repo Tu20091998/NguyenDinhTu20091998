@@ -18,8 +18,6 @@ class Database
             $this->conn = new PDO($dsn, $user, $pass, [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
             ]);
-
-            echo "✅ Kết nối CSDL thành công (PDO)<br>";
         } catch (PDOException $e) {
             die($e->getMessage());
         }
