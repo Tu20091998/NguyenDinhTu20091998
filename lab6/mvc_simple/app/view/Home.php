@@ -1,9 +1,9 @@
 <?php
 //khai báo namespace
-namespace app;
+namespace app\view;
 
 //định nghĩa hằng số STORAGE_PATH
-define('STORAGE_PATH', __DIR__ . '/../storage');
+define('STORAGE_PATH', __DIR__ . '/../../storage');
 
 class Home
 {
@@ -56,10 +56,10 @@ class Home
 
         //xét upload
         if ($isMoved) {
-            header("Location: /Php2/lab5/mvc_simple?status=success");
+            header("Location: /Php2/lab6/mvc_simple/upload?status=success");
             exit;
         } else {
-            header("Location: /Php2/lab5/mvc_simple?status=error");
+            header("Location: /Php2/lab6/mvc_simple/upload?status=error");
             exit;
         }
     }

@@ -10,16 +10,22 @@ class Database
 
     public function __construct()
     {
-        $dsn = "mysql:host=localhost;port=3307;dbname=mvc_demo;charset=utf8mb4";
-        $user = "root";
-        $pass = "";
+        // Lấy thông tin từ file .env thông qua mảng $_ENV
+        $host = $_ENV['DB_HOST'] ?? 'localhost';
+        $port = $_ENV['DB_PORT'] ?? '3306';
+        $db   = $_ENV['DB_NAME'] ?? 'mvc_demo';
+        $user = $_ENV['DB_USER'] ?? 'root';
+        $pass = $_ENV['DB_PASS'] ?? '';
+
+        $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4";
 
         try {
             $this->conn = new PDO($dsn, $user, $pass, [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC // Trả về mảng kết hợp mặc định
             ]);
         } catch (PDOException $e) {
-            die($e->getMessage());
+            die("Lỗi kết nối Database: " . $e->getMessage());
         }
     }
 
@@ -27,6 +33,4 @@ class Database
     {
         return $this->conn;
     }
-
-    //composer dump-autoload
 }

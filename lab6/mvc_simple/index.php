@@ -1,55 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple MVC Application</title>
+    <link rel="stylesheet" href="public/css/layout.css">
+</head>
 
+<body>
 
-<nav>
-    <a href="upload">Upload</a> |
-    <a href="login">Đăng nhập</a> |
-    <a href="register">Đăng ký</a>
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">SimpleMVC</div>
+        <div class="nav-links">
+            <a href="upload">Upload</a>
+            <a href="login">Đăng nhập</a>
+            <a href="register">Đăng ký</a>
+        </div>
+    </div>
 </nav>
+
 <hr>
 
-<?php
-    //khai báo composer autoload
-    require_once __DIR__ . "/vendor/autoload.php";
+<div class="content">
+    <?php
+        //khởi tạo session
+        session_start();
 
-    //sử dụng các lớp cần thiết
-    use app\core\Route;
-    use app\Home;
-    use app\Login;
-    use app\Register;
+        //khai báo composer autoload
+        require_once __DIR__ . "/vendor/autoload.php";
 
-    //tạo đối tượng router
-    $router = new Route();
+        // Khởi tạo Dotenv
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+        $dotenv->load();
 
-    //đăng ký các route
+        //sử dụng các lớp cần thiết
+        use app\Controller\LoginController;
+        use app\Controller\RegisterController;
+        use app\core\Route;
+        use app\view\Home;
+        use app\view\Login;
+        use app\view\Register;
 
-    //hiển thị trang upload
-    $router->get("/upload", [Home::class, "index"]);
-    $router->post("/upload", [Home::class, "upload"]);
+        //tạo đối tượng router
+        $router = new Route();
+
+        //đăng ký các route
+
+        //hiển thị trang upload
+        $router->get("/upload", [Home::class, "index"]);
+        $router->post("/upload", [Home::class, "upload"]);
 
 
-    //đăng ký các route liên quan đến đăng nhập
-    $router->get("/login", [Login::class, "index"]);
-    $router->post("/login", [Login::class, "loginUser"]);
-    $router->get("/logout", [Login::class, "logout"]);
+        //đăng ký các route liên quan đến đăng nhập
+        $router->get("/login", [Login::class, "index"]);
+        $router->post("/login", [LoginController::class, "loginUser"]);
+        $router->get("/logout", [LoginController::class, "logout"]);
 
-    //đăng ký các route liên quan đến đăng ký
-    $router->get("/register", [Register::class, "index"]);
-    $router->post("/register", [Register::class, "registerUser"]);
+        //đăng ký các route liên quan đến đăng ký
+        $router->get("/register", [Register::class, "index"]);
+        $router->post("/register", [RegisterController::class, "registerUser"]);
 
 
-    //xử lý route
-    try {
-        // Lấy URI và method thực tế từ hệ thống
-        $uri = $_SERVER['REQUEST_URI'];
-        $method = $_SERVER['REQUEST_METHOD'];
+        //xử lý route
+        try {
+            // Lấy URI và method thực tế từ hệ thống
+            $uri = $_SERVER['REQUEST_URI'];
+            $method = $_SERVER['REQUEST_METHOD'];
 
-        // Loại bỏ phần thư mục dự án để chỉ lấy phần route phía sau
-        $projectPath = '/Php2/lab6/mvc_simple';
-        $relativeUri = str_replace($projectPath, '', $uri);
+            // Loại bỏ phần thư mục dự án để chỉ lấy phần route phía sau
+            $projectPath = '/Php2/lab6/mvc_simple';
+            $relativeUri = str_replace($projectPath, '', $uri);
 
-        echo $router->resolve($relativeUri ?: '/', $method);
-    } catch (\Exception $e) {
-        echo "Route '" . $_SERVER['REQUEST_URI'] . "' không tồn tại.";
-    }
-?>
+            echo $router->resolve($relativeUri ?: '/', $method);
+        } catch (\Exception $e) {
+            echo "Route '" . $_SERVER['REQUEST_URI'] . "' không tồn tại.";
+        }
+    ?>
+</div>
 
+
+
+<footer class="footer">
+    <div class="footer-container">
+        <p>© 2026 Simple MVC Application</p>
+        <p>
+            <a href="#">Giới thiệu</a> |
+            <a href="#">Liên hệ</a> |
+            <a href="#">Chính sách</a>
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
