@@ -1,0 +1,88 @@
+body {
+    background: #f4f6f8;
+}
+
+.container {
+    width: 400px;
+    margin: 80px auto;
+    padding: 25px;
+    border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Tiêu đề */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Thông báo */
+.message {
+    text-align: center;
+    color: #e53935;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+/* Chuyển row về dạng cột */
+.row {
+    display: block;
+}
+
+/* Col full width */
+.col {
+    width: 100%;
+}
+
+/* Group input */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Label */
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #444;
+}
+
+/* Input */
+.form-control {
+    width: 94%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.15);
+}
+
+/* Button */
+.btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 6px;
+    background: #007bff;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    background: #0056b3;
+}
+
