@@ -43,7 +43,7 @@
             $method = $_SERVER['REQUEST_METHOD'];
 
             // Loại bỏ phần thư mục dự án để chỉ lấy phần route phía sau
-            $projectPath = '/Php2/lab8/mvc_simple';
+            $projectPath = '/Php2/Assm2/frontend';
             $relativeUri = str_replace($projectPath, '', $uri);
 
             echo $router->resolve($relativeUri ?: '/', $method);
