@@ -1,8 +1,0 @@
-RewriteEngine On
-
-# Không xử lý nếu là thư mục hoặc file thực tế đang tồn tại
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-
-# Chuyển mọi request còn lại vào index.php
-RewriteRule ^(.*)$ index.php [QSA,L]
