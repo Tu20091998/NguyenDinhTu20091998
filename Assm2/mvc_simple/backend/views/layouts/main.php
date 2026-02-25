@@ -18,6 +18,9 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
+                            <a class="nav-link" href="products">Sản phẩm</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="upload">Upload</a>
                         </li>
                         <li class="nav-item">
@@ -48,8 +51,7 @@
                     <span class="text-muted">&copy; 2026 <strong>Nguyễn Đình Tú</strong>. Built with PHP MVC.</span>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
-                    <a href="#" class="text-decoration-none text-muted me-3">Tài liệu</a>
-                    <a href="#" class="text-decoration-none text-muted">Hỗ trợ</a>
+                    <a class="nav-link" href="home">Trang chủ người dùng</a>
                 </div>
             </div>
         </div>

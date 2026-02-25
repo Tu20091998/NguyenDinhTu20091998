@@ -11,11 +11,11 @@ class Database
     public function __construct()
     {
         // Lấy thông tin từ file .env thông qua mảng $_ENV
-        $host = $_ENV['DB_HOST'] ?? 'localhost';
-        $port = $_ENV['DB_PORT'] ?? '3306';
-        $db   = $_ENV['DB_NAME'] ?? 'mvc_demo';
-        $user = $_ENV['DB_USER'] ?? 'root';
-        $pass = $_ENV['DB_PASS'] ?? '';
+        $host = $_ENV['DB_HOST'];
+        $port = $_ENV['DB_PORT'];
+        $db   = $_ENV['DB_NAME'];
+        $user = $_ENV['DB_USER'];
+        $pass = $_ENV['DB_PASS'];
 
         $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4";
 

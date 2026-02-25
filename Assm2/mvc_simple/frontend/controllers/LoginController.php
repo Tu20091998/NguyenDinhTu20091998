@@ -88,13 +88,13 @@
 
             //xét nếu trống form
             if($this->emptyInput($email, $password) == true){
-                header("Location: /Php2/lab8/mvc_simple/login?status_login=form_empty");
+                header("Location: /Php2/Assm2/mvc_simple/login?status_login=form_empty");
                 exit();
             }
 
             //xét email hợp lệ
             if($this->validEmail($email) == false){
-                header("Location: /Php2/lab8/mvc_simple/login?status_login=invalid_email");
+                header("Location: /Php2/Assm2/mvc_simple/login?status_login=invalid_email");
                 exit();
             }
 
@@ -103,19 +103,19 @@
 
             //kiểm tra xem người dùng có tồn tại không
             if(empty($user) || !$user){
-                header("Location: /Php2/lab8/mvc_simple/login?status_login=user_not_found");
+                header("Location: /Php2/Assm2/mvc_simple/login?status_login=user_not_found");
                 exit();
             }
 
             //kiểm tra mật khẩu
             if(!password_verify($password, $user['password'])){
-                header("Location: /Php2/lab8/mvc_simple/login?status_login=error_password");
+                header("Location: /Php2/Assm2/mvc_simple/login?status_login=error_password");
                 exit();
             }
 
             //nếu đúng thì khởi tạo session
             $_SESSION['user'] = $user;
-            header("Location: /Php2/lab8/mvc_simple/login?status_login=success");
+            header("Location: /Php2/Assm2/mvc_simple/login?status_login=success");
             exit();
         }
 
@@ -137,7 +137,7 @@
             session_start();
             session_unset();
             session_destroy();
-            header("Location: /Php2/lab8/mvc_simple/login?status_login=logout");
+            header("Location: /Php2/Assm2/mvc_simple/login?status_login=logout");
             exit();
         }
     }

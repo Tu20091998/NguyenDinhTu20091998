@@ -14,10 +14,12 @@
         use frontend\controllers\LoginController;
         use frontend\controllers\RegisterController;
         use frontend\controllers\UploadController;
+        use frontend\controllers\HomeController;
 
 
         //sử dụng các lớp cần thiết của backend
         use backend\controllers\AdminController;
+        use backend\controllers\ProductController;
         
         use core\Route;
 
@@ -26,11 +28,14 @@
 
         //đăng ký các route
 
+        //hiển thị trang chủ
+        $router->get("/", [HomeController::class, "index"]);
+        $router->get("/home", [HomeController::class, "index"]);
+
+
         //hiển thị trang upload
-        $router->get("/", [UploadController::class, "index"]);
         $router->get("/upload", [UploadController::class, "index"]);
         $router->post("/upload", [UploadController::class, "upload"]);
-
 
         //đăng ký các route liên quan đến đăng nhập
         $router->get("/login", [LoginController::class, "index"]);
@@ -43,6 +48,8 @@
 
 
         //đăng ký route cho backend
+        $router->post("/add_product", [ProductController::class, "add_product"]);
+        $router->get("/products", [ProductController::class, "show_product_page"]);
         $router->get("/admin", [AdminController::class, "index"]);
 
         //xử lý route
