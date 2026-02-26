@@ -35,9 +35,6 @@
             //xét trả về thông báo
             if(isset($_GET["status_login"])){
                 switch($_GET["status_login"]){
-                    case "success": 
-                        $message = "<div class='alert alert-success'>✅ Đăng nhập thành công!</div>";
-                    break;
 
                     case "error_password": 
                         $message = "<div class='alert alert-danger'>❌ Mật khẩu không đúng!</div>";
@@ -57,6 +54,14 @@
 
                     case "user_not_found": 
                         $message = "<div class='alert alert-danger'>❌ Người dùng không tồn tại!</div>";
+                    break;
+
+                    case "need_login": 
+                        $message = "<div class='alert alert-warning'>⚠️ Vui lòng đăng nhập để tiếp tục!</div>";
+                    break;
+
+                    case "user_locked": 
+                        $message = "<div class='alert alert-danger'>❌ Tài khoản của bạn đã bị khóa !</div>";
                     break;
                 }
             }
@@ -113,9 +118,22 @@
                 exit();
             }
 
+            //nếu người đăng nhập là admin thì chuyển qua trang admin
+            if($user['role'] === 'admin'){
+                $_SESSION['user'] = $user;
+                header("Location: /Php2/Assm2/mvc_simple/admin");
+                exit();
+            }
+
+            //nếu người dùng bị khoá thì trả về thông báo
+            if($user['status'] == 0){
+                header("Location: /Php2/Assm2/mvc_simple/login?status_login=user_locked");
+                exit();
+            }
+
             //nếu đúng thì khởi tạo session
             $_SESSION['user'] = $user;
-            header("Location: /Php2/Assm2/mvc_simple/login?status_login=success");
+            header("Location: /Php2/Assm2/mvc_simple/home");
             exit();
         }
 

@@ -20,7 +20,7 @@
             $products = $productModel->get_all_products();
 
             return View::render("HomeView", [
-                "title" => "Chào mừng đến với Shop Điện thoại!",
+                "title" => "Chào mừng bạn đến với PolyXShop !",
                 "products" => $products
             ]);
         }
