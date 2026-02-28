@@ -124,42 +124,20 @@
                         ];
 
                         if ($this->productModel->insert_product($data)) {
-                            header("Location: /Php2/Assm2/mvc_simple/products?add_product=success");
+                            header("Location: /Php2/Assm2/mvc_simple/admin_products?add_product=success");
                             exit;
                         } else {
-                            header("Location: /Php2/Assm2/mvc_simple/products?add_product=error");
+                            header("Location: /Php2/Assm2/mvc_simple/admin_products?add_product=error");
                             exit;
                         }
                     } else {
-                        header("Location: /Php2/Assm2/mvc_simple/products?add_product=invalid_image");
+                        header("Location: /Php2/Assm2/mvc_simple/admin_products?add_product=invalid_image");
                         exit;
                     }
                 } else {
-                    header("Location: /Php2/Assm2/mvc_simple/products?add_product=invalid_image");
+                    header("Location: /Php2/Assm2/mvc_simple/admin_products?add_product=invalid_image");
                     exit;
                 }
-            }
-        }
-
-        // tạo hàm hiển thị chi tiết sản phẩm
-        public function product_detail() {
-            //kiểm tra nếu id sản phẩm được truyền qua GET
-            if(isset($_GET["id"])){
-                $id = $_GET["id"];
-
-                //lấy thông tin sản phẩm từ model
-                $product = $this->productModel->getProductById($id);
-
-                //nếu sản phẩm tồn tại, hiển thị chi tiết sản phẩm
-                if($product){
-                    View::setBaseDir("frontend/views");
-
-                    return View::render("ProductDetail", ["product" => $product]);
-                } else {
-                    echo "Sản phẩm không tồn tại!";
-                }
-            } else {
-                echo "ID sản phẩm không hợp lệ!";
             }
         }
 
@@ -167,7 +145,7 @@
         public function edit_product() {
             $id = $_GET['id'] ?? null;
             if (!$id) {
-                header("Location: /Php2/Assm2/mvc_simple/products");
+                header("Location: /Php2/Assm2/mvc_simple/admin_products");
                 exit;
             }
             
@@ -221,9 +199,9 @@
                 ];
 
                 if ($this->productModel->update_product($data)) {
-                    header("Location: /Php2/Assm2/mvc_simple/products?status=update_success");
+                    header("Location: /Php2/Assm2/mvc_simple/admin_products?status=update_success");
                 } else {
-                    header("Location: /Php2/Assm2/mvc_simple/products?status=update_error");
+                    header("Location: /Php2/Assm2/mvc_simple/admin_products?status=update_error");
                 }
                 exit;
             }
@@ -233,14 +211,14 @@
         public function delete_product() {
             $id = $_GET['id'] ?? null;
             if (!$id) {
-                header("Location: /Php2/Assm2/mvc_simple/products");
+                header("Location: /Php2/Assm2/mvc_simple/admin_products");
                 exit;
             }
 
             if ($this->productModel->delete_product($id)) {
-                header("Location: /Php2/Assm2/mvc_simple/products?status=delete_success");
+                header("Location: /Php2/Assm2/mvc_simple/admin_products?status=delete_success");
             } else {
-                header("Location: /Php2/Assm2/mvc_simple/products?status=delete_error");
+                header("Location: /Php2/Assm2/mvc_simple/admin_products?status=delete_error");
             }
             exit;
         }

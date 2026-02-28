@@ -70,5 +70,33 @@
 
             return View::render("OrderSuccessView", ["orderId" => $orderId]);
         }
+
+        //hàm hiển thị trang quản lý đơn hàng cho người dùng
+        public function orders() {
+            $userId = $_SESSION['user']['id'];
+            $orders = $this->orderModel->getOrdersByUserId($userId);
+
+            return View::render("OrderListView", ["orders" => $orders]);
+        }
+
+        //hàm hiển thị trang chi tiết đơn hàng
+        public function order_detail() {
+            $orderId = $_GET['id'] ?? null;
+
+            if (!$orderId) {
+                header("Location: orders");
+                exit();
+            }
+
+            $order = $this->orderModel->getOrderById($orderId);
+
+            // Kiểm tra nếu đơn hàng không tồn tại hoặc không thuộc về người dùng hiện tại
+            if (!$order || $order['user_id'] != $_SESSION['user']['id']) {
+                header("Location: orders");
+                exit();
+            }
+
+            return View::render("OrderDetailView", ["order" => $order]);
+        }
     }
 ?>

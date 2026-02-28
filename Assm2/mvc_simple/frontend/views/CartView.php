@@ -62,6 +62,14 @@
         <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
                 <h5 class="fw-bold mb-4">Tóm tắt đơn hàng</h5>
+                <!--Hiển thị tên sản phẩm và giá trong tóm tắt đơn hàng-->
+                <?php foreach ($cartItems as $item): ?>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span><?= $item['name'] ?></span>
+                        <span class="fw-bold"><?= number_format($item['price'], 0, ',', '.') ?>đ</span>
+                    </div>
+                <?php endforeach; ?>
+
                 <div class="d-flex justify-content-between mb-3">
                     <span>Tạm tính:</span>
                     <span class="fw-bold"><?= number_format($totalBill, 0, ',', '.') ?>đ</span>

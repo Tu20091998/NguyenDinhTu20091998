@@ -2,9 +2,6 @@
     //tạo namespace
     namespace frontend\controllers;
 
-    //nạp vào composer
-    require_once __DIR__."/../../vendor/autoload.php";
-
     //nạp vào usermodel
     use models\RegisterModel;
     use core\View;
@@ -20,6 +17,8 @@
         public $confirmPassword;
 
         public $registerModel;
+
+        public $reviewModel;
 
         public function __construct() {
             $this->registerModel = new RegisterModel();
@@ -134,5 +133,9 @@
         public function matchPassword($password, $confirmPassword): bool{
             return $password === $confirmPassword;
         }
+
+
+        //chạy hàm hiển thị bình luận của sản phẩm
+
     }
 ?>

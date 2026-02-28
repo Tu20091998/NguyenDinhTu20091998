@@ -17,11 +17,21 @@
             View::setBaseDir("frontend/views");
 
             $productModel = new ProductModel();
-            $products = $productModel->get_all_products();
+            $products_seller = $productModel->getBestSellingProducts();
 
             return View::render("HomeView", [
                 "title" => "Chào mừng bạn đến với PolyXShop !",
-                "products" => $products
+                "products_seller" => $products_seller,
+            ]);
+        }
+
+        //hàm hiển thị trang liên hệ
+        public function contact() {
+            // Chuyển hướng thư mục view sang frontend
+            View::setBaseDir("frontend/views");
+
+            return View::render("ContactView", [
+                "title" => "Liên hệ với chúng tôi"
             ]);
         }
     }

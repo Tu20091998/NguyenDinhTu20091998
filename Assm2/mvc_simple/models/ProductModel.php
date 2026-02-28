@@ -82,5 +82,72 @@
             $stmt = $this->conn->prepare($sql);
             return $stmt->execute([':id' => $id]);
         }
+
+        //lấy sản phẩm bán chạy nhất (giả sử dựa trên số lượng đã bán trong bảng order_items)
+        public function getBestSellingProducts($limit = 8) {
+            $sql = "SELECT p.*, c.name AS category_name, SUM(oi.quantity) AS total_sold 
+                    FROM products p 
+                    JOIN categories c ON p.category_id = c.id 
+                    JOIN order_items oi ON p.id = oi.product_id 
+                    GROUP BY p.id 
+                    ORDER BY total_sold DESC 
+                    LIMIT :limit";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        // Hàm lấy sản phẩm có phân trang (kết hợp cả danh mục và tìm kiếm)
+        public function getProductsPaged($categoryId = null, $keyword = null, $offset = 0, $limit = 6) {
+            $sql = "SELECT p.*, c.name AS category_name 
+                    FROM products p 
+                    JOIN categories c ON p.category_id = c.id 
+                    WHERE 1=1";
+            $params = [];
+
+            if ($categoryId) {
+                $sql .= " AND p.category_id = :cat_id";
+                $params[':cat_id'] = $categoryId;
+            }
+            if ($keyword) {
+                $sql .= " AND p.name LIKE :keyword";
+                $params[':keyword'] = '%' . $keyword . '%';
+            }
+
+            // Thêm LIMIT và OFFSET để phân trang
+            $sql .= " ORDER BY p.id DESC LIMIT :limit OFFSET :offset";
+            
+            $stmt = $this->conn->prepare($sql);
+            
+            // Ràng buộc giá trị tham số (Phải dùng bindValue cho limit/offset là số nguyên)
+            foreach ($params as $key => $val) {
+                $stmt->bindValue($key, $val);
+            }
+            $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
+            
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        // Hàm đếm tổng số sản phẩm để tính toán tổng số trang
+        public function countTotalProducts($categoryId = null, $keyword = null) {
+            $sql = "SELECT COUNT(*) FROM products WHERE 1=1";
+            $params = [];
+
+            if ($categoryId) {
+                $sql .= " AND category_id = :cat_id";
+                $params[':cat_id'] = $categoryId;
+            }
+            if ($keyword) {
+                $sql .= " AND name LIKE :keyword";
+                $params[':keyword'] = '%' . $keyword . '%';
+            }
+
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute($params);
+            return $stmt->fetchColumn();
+        }
     }
 ?>

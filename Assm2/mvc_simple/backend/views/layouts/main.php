@@ -76,7 +76,7 @@
                 <a href="categories" class="nav-link"><i class="fa-solid fa-list me-2"></i> Quản lý danh mục</a>
             </li>
             <li class="nav-item">
-                <a href="products" class="nav-link"><i class="fa-solid fa-mobile-screen me-2"></i> Quản lý sản phẩm</a>
+                <a href="admin_products" class="nav-link"><i class="fa-solid fa-mobile-screen me-2"></i> Quản lý sản phẩm</a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link"><i class="fa-solid fa-cart-shopping me-2"></i> Quản lý đơn hàng</a>

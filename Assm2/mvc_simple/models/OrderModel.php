@@ -22,21 +22,6 @@
             $this->conn = $db->getConnection();
         }
 
-        // Lấy danh sách đơn hàng của User
-        public function getOrdersByUserId($userId) {
-            $sql = "SELECT o.id as order_id, o.created_at, o.total_amount, o.status, 
-                    GROUP_CONCAT(p.name SEPARATOR ', ') as product_names
-                    FROM orders o
-                    JOIN order_items oi ON o.id = oi.order_id
-                    JOIN products p ON oi.product_id = p.id
-                    WHERE o.user_id = :user_id
-                    GROUP BY o.id
-                    ORDER BY o.created_at DESC";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->execute([':user_id' => $userId]);
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        }
-
         //Tạo đơn hàng mới
         public function createOrder($userId, $totalAmount, $fullName, $phone, $address, $cartItems) {
             try {
@@ -76,6 +61,49 @@
                 $this->conn->rollBack();
                 return false;
             }
+        }
+
+        // Lấy đơn hàng theo ID người dùng
+        public function getOrdersByUserId($userId) {
+            // Lấy danh sách đơn hàng
+            $sql = "SELECT * FROM orders WHERE user_id = :user_id ORDER BY created_at DESC";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([':user_id' => $userId]);
+            $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $orders;
+        }
+
+        public function getOrderById($orderId) {
+            // Lấy thông tin chung của đơn hàng
+            $sqlOrder = "SELECT * FROM orders WHERE id = :id";
+            $stmtOrder = $this->conn->prepare($sqlOrder);
+            $stmtOrder->execute([':id' => $orderId]);
+            $order = $stmtOrder->fetch(PDO::FETCH_ASSOC);
+
+            if ($order) {
+                // JOIN với bảng products để lấy tên và ảnh máy
+                $sqlItems = "SELECT oi.*, p.name, p.image 
+                            FROM order_items oi
+                            JOIN products p ON oi.product_id = p.id
+                            WHERE oi.order_id = :order_id";
+                $stmtItems = $this->conn->prepare($sqlItems);
+                $stmtItems->execute([':order_id' => $orderId]);
+                $order['items'] = $stmtItems->fetchAll(PDO::FETCH_ASSOC);
+            }
+
+            return $order;
+        }
+
+        //hàm lấy tất cả đơn hàng để hiển thị cho admin
+        public function getAllOrders() {
+            $sql = "SELECT o.*, u.username 
+                    FROM orders o
+                    JOIN users u ON o.user_id = u.id
+                    ORDER BY o.created_at DESC";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     }
 ?>

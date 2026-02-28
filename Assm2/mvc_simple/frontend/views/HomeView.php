@@ -66,13 +66,13 @@
         </div>
     </div>
 
-    <!-- Danh sách sản phẩm -->
+    <!-- Danh sách sản phẩm bán chạy-->
     <div class="container mt-5 bg-white shadow-sm rounded-4 p-4">
-        <h2 class="text-center mb-4 text-uppercase fw-bold">Danh sách sản phẩm</h2>
+        <h2 class="text-center mb-4 text-uppercase fw-bold"><i class="fa-solid fa-fire text-danger me-2"></i>Sản phẩm bán chạy</h2>
 
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-            <?php if (!empty($products)): ?>
-                <?php foreach ($products as $product): ?>
+            <?php if (!empty($products_seller)): ?>
+                <?php foreach ($products_seller as $product): ?>
                     <div class="col">
                         <div class="card h-100 shadow-sm border-0 rounded-3 product-box">
                             <div class="position-relative overflow-hidden">
@@ -112,9 +112,11 @@
         </div>
     </div>
     
+    
+    
     <!--Cam kết-->
     <div class="container mt-5 py-4 bg-light rounded-4">
-        <h2 class="text-center mb-4 fw-bold text-uppercase">Cam kết của Shop</h2>
+        <h2 class="text-center mb-4 fw-bold text-uppercase"><i class="fa-solid fa-handshake text-warning me-2"></i>Cam kết của Shop</h2>
         <div class="row g-4 text-center">
             <div class="col-md-3">
                 <div class="p-3">
@@ -149,7 +151,7 @@
     
     <!-- Đánh giá của khách hàng -->
     <div class="container mt-5 mb-5 bg-light rounded-4 p-4">
-        <h2 class="text-center mb-5 text-uppercase fw-bold">Khách hàng nói về PolyXShop</h2>
+        <h2 class="text-center mb-5 text-uppercase fw-bold"><i class="fa-solid fa-comments text-warning me-2"></i>Khách hàng nói về PolyXShop</h2>
         <div class="row g-4">
             <div class="col-md-4">
                 <div class="card border-0 shadow-sm rounded-4 p-3">
@@ -215,7 +217,7 @@
                 class="img-fluid rounded-4 shadow w-75 h-75" alt="Về PolyXShop">
         </div>
         <div class="col-md-6 ps-md-5">
-            <h6 class="text-warning fw-bold text-uppercase">Về chúng tôi</h6>
+            <h3 class="text-warning fw-bold text-uppercase"><i class="fa-solid fa-building text-warning me-2"></i>Về chúng tôi</h3>
             <h2 class="fw-bold mb-4">PolyXShop – Trải nghiệm công nghệ đỉnh cao tại Đà Nẵng</h2>
             <p class="text-muted">
                 Được thành lập từ niềm đam mê công nghệ, <strong>PolyXShop</strong> tự hào là hệ thống bán lẻ điện thoại, máy tính bảng và phụ kiện uy tín hàng đầu. Chúng tôi không chỉ bán sản phẩm, chúng tôi trao đi sự tin tâm.

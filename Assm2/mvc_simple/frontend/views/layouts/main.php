@@ -20,6 +20,12 @@
         .sticky-top {
             z-index: 1020;
         }
+
+        .input-search{
+            transition: box-shadow 0.3s ease;
+            margin-left: 2rem;
+            margin-right: 2rem;
+        }
     </style>
 <body>
     <!-- Header với navbar -->
@@ -38,23 +44,31 @@
                 <!-- Menu điều hướng -->
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <!-- Form tìm kiếm -->
-                    <form class="d-flex mx-auto my-2 my-lg-0 col-lg-5" action="search" method="GET">
-                        <div class="input-group">
-                            <input class="form-control border-0 rounded-start-pill ps-4" type="search" name="keyword" 
+                    <form class="d-flex my-2 my-lg-0 col-lg-5" action="search" method="GET">
+                        <div class="input-group input-search">
+                            <input class="form-control border-1 rounded-start-pill ps-4" type="search" name="keyword" 
                                 placeholder="Tìm iPhone, Samsung..." aria-label="Search">
                             <button class="btn btn-warning rounded-end-pill px-4" type="submit">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
                         </div>
                     </form>
-
                     <ul class="navbar-nav ms-auto align-items-center">
+
+                        <li class="nav-item">
+                            <a class="nav-link px-3 active" href="products"><i class="fa-solid fa-house me-1"></i> Sản phẩm</a>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link px-3 active" href="cart"><i class="fa-solid fa-cart-shopping me-1"></i> Giỏ hàng</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link px-3 active" href="home"><i class="fa-solid fa-house me-1"></i> Trang chủ</a>
+                            <a class="nav-link px-3 active" href="orders"><i class="fa-solid fa-receipt me-1"></i> Đơn hàng</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link px-3 active" href="contact"><i class="fa-solid fa-phone me-1"></i> Liên hệ</a>
                         </li>
 
                         <div class="d-none d-lg-block border-start border-secondary mx-2" style="height: 20px;"></div>
