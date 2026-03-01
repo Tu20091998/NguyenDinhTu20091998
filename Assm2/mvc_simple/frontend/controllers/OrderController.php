@@ -71,14 +71,6 @@
             return View::render("OrderSuccessView", ["orderId" => $orderId]);
         }
 
-        //hàm hiển thị trang quản lý đơn hàng cho người dùng
-        public function orders() {
-            $userId = $_SESSION['user']['id'];
-            $orders = $this->orderModel->getOrdersByUserId($userId);
-
-            return View::render("OrderListView", ["orders" => $orders]);
-        }
-
         //hàm hiển thị trang chi tiết đơn hàng
         public function order_detail() {
             $orderId = $_GET['id'] ?? null;

@@ -39,11 +39,11 @@
             $sql = "SELECT r.*, u.firstname, u.lastname 
                     FROM reviews r 
                     JOIN users u ON r.user_id = u.id 
-                    WHERE r.product_id = :product_id 
+                    WHERE r.product_id = :product_id AND r.status = 1
                     ORDER BY r.created_at DESC";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([':product_id' => $productId]);
-            return $stmt->fetchAll(PDO::FETCH_ASSOC); // Tú nhớ dùng FETCH_ASSOC để khớp với $review['name'] nhé
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
         //hàm thêm đánh giá mới vào database
@@ -64,6 +64,33 @@
                 }
                 throw $e;
             }
+        }
+
+        // Lấy danh sách bình luận kèm lọc theo sao (Dành cho trang sản phẩm)
+        public function getReviewsPaged($rating = null) {
+            $sql = "SELECT r.*, u.firstname, u.lastname, p.name as product_name
+                    FROM reviews r 
+                    JOIN users u ON r.user_id = u.id
+                    JOIN products p ON r.product_id = p.id";
+
+            if ($rating) {
+                $sql .= " WHERE r.rating = :rating";
+            }
+
+            $sql .= " ORDER BY r.created_at DESC";
+            $stmt = $this->conn->prepare($sql);
+            if ($rating) $params[':rating'] = $rating;
+
+            $stmt->execute($params ?? []);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+
+        // Hàm dành cho Admin để ẩn/hiện bình luận
+        public function toggleStatus($reviewId, $status) {
+            $sql = "UPDATE reviews SET status = :status WHERE id = :id";
+            $stmt = $this->conn->prepare($sql);
+            return $stmt->execute([':status' => $status, ':id' => $reviewId]);
         }
     }
 ?>

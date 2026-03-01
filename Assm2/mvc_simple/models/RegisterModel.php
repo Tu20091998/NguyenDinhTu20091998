@@ -24,15 +24,12 @@ class RegisterModel
         //mã hóa mật khẩu
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        //kết nối database
-        $db = new Database();
-        $conn = $db->getConnection();
 
         //thêm người dùng vào database
         $sql = "INSERT INTO users (lastname, firstname, email, password) 
                 VALUES (:lastname, :firstname, :email, :password)";
         
-        $stmt = $conn->prepare($sql);
+        $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':lastname', $lastname);
         $stmt->bindParam(':firstname', $firstname);
         $stmt->bindParam(':email', $email);

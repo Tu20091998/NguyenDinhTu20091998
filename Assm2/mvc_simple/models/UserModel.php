@@ -61,5 +61,13 @@
                 ':id' => $id
             ]);
         }
+
+        //hàm lấy thông tin người dùng theo id
+        public function getUserById($id) {
+            $sql = "SELECT * FROM users WHERE id = :id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([':id' => $id]);
+            return $stmt->fetch();
+        }
     }
 ?>

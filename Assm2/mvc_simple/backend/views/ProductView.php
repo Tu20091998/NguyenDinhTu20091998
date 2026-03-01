@@ -1,12 +1,12 @@
 <div class="container mt-5 animate__animated animate__fadeIn">
-    <h1 class="fw-bold mb-4 text-dark text-center text-uppercase mb-5">
-        Quản lý sản phẩm - PolyXShop
-    </h1>
+    <h3 class="fw-bold mb-4 text-dark text-center text-uppercase mb-5">
+        <i class="fa-solid fa-mobile-screen me-2 text-warning"></i> Quản lý sản phẩm - PolyXShop
+    </h3>
     <div class="card shadow border-0 rounded-4 mb-5">
         <div class="card-body p-4">
-            <h2 class="fw-bold mb-4 text-dark">
-                <i class="fa-solid fa-plus-circle text-warning me-2"></i>Thêm sản phẩm cho PolyXShop
-            </h2>
+            <h4 class="fw-bold mb-4 text-dark text-uppercase">
+                <i class="fa-solid fa-plus-circle text-warning me-2 "></i>Thêm sản phẩm mới
+            </h4>
             
             <?php if(isset($message)) echo $message; ?>
 
@@ -54,8 +54,38 @@
         </div>
     </div>
 
-    <h3 class="fw-bold mb-4 text-uppercase">Danh sách sản phẩm hiện có</h3>
-    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+    <h4 class="fw-bold mb-4 text-uppercase">Danh sách sản phẩm hiện có</h4>
+    
+    <div class="d-flex justify-content-between mb-3">
+        <!-- Form tìm kiếm -->
+        <form class="input-search p-3" action="search_product_admin" method="GET">
+            <label for="category_id" class="form-label fw-bold">Tìm kiếm sản phẩm</label>
+            <div class="input-group">
+                <input class="form-control border-1 rounded-start-pill" type="search" name="keyword" 
+                    placeholder="Tìm iPhone, Samsung..." aria-label="Search">
+                <button class="btn btn-warning rounded-end-pill px-4" type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+        </form>
+
+        <div>
+            <label for="category_id" class="form-label fw-bold">Lọc theo danh mục</label>
+            <select class="form-select rounded-3" id="category_id" name="category_id" 
+                    onchange="location.href = 'admin_products?cat=' + this.value;">
+                <option value="">-- Tất cả sản phẩm --</option>
+                <?php if(!empty($categories)): ?>
+                    <?php foreach($categories as $cat): ?>
+                        <option value="<?= $cat['id'] ?>" <?= (isset($_GET['cat']) && $_GET['cat'] == $cat['id']) ? 'selected' : '' ?>>
+                            <?= $cat['name'] ?>
+                        </option>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </select>
+        </div>
+    </div>
+    
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden mt-4">
         <table class="table table-hover align-middle mb-0">
             <thead class="bg-dark text-white text-center">
                 <tr>
@@ -64,7 +94,6 @@
                     <th>Tên sản phẩm</th>
                     <th>Danh mục</th>
                     <th>Giá bán</th>
-                    <th style="width: 250px;">Mô tả</th>
                     <th>Thao tác</th>
                 </tr>
             </thead>
@@ -84,7 +113,6 @@
                                 <span class="badge bg-info text-dark"><?= $product['category_name'] ?? 'Chưa phân loại' ?></span>
                             </td>
                             <td class="text-danger fw-bold text-end pe-3"><?= number_format($product['price'], 0, ',', '.') ?>đ</td>
-                            <td><small class="text-muted line-clamp"><?= $product['description'] ?></small></td>
                             <td class="text-center">
                                 <a href="edit_product?id=<?= $product['id'] ?>" class="btn btn-sm btn-outline-dark rounded-pill me-1">Sửa</a>
                                 <a href="delete_product?id=<?= $product['id'] ?>" 

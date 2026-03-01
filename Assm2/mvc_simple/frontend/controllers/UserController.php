@@ -8,14 +8,20 @@
     //nạp vào user model
     use models\UserModel;
 
+    //nạp vào order model để hiển thị lịch sử đơn hàng
+    use models\OrderModel;
+
     //khai báo class UserController
     class UserController {
         protected $userModel;
+
+        protected $orderModel;
 
         //hàm khởi tạo
         public function __construct()
         {
             $this->userModel = new UserModel();
+            $this->orderModel = new OrderModel();
         }
 
 
@@ -90,16 +96,23 @@
                     break;
                 }
             }
+
+            //lấy thông tin người dùng để hiển thị lên form
+            $userId = $_SESSION['user']['id'];
             
             //lấy thông tin người dùng
-            $users = $this->userModel->getAllUsers();
+            $users = $this->userModel->getUserById($userId);
+
+            //lấy lịch sử đơn hàng của người dùng để hiển thị lên trang profile
+            $orders = $this->orderModel->getOrdersByUserId($userId);
 
             // Chuyển hướng thư mục view sang backend
             View::setBaseDir("frontend/views");
 
             return View::render("ProfileView", [
                 "users" => $users,
-                "message" => $message
+                "message" => $message,
+                "orders" => $orders
             ]);
         }
 

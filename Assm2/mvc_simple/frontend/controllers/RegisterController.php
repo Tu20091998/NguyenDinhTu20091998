@@ -6,6 +6,8 @@
     use models\RegisterModel;
     use core\View;
 
+    use PDOException;
+
     //tạo class usercontroller
     class RegisterController
     {
@@ -65,15 +67,14 @@
 
         //hàm xử lý đăng ký người dùng
         public function registerUser(){
-            //xét nút nhấn đăng ký
-            if(isset($_POST["submit"]))
-            {
+            try{
+                //lấy thông tin
                 $this->lastname = $_POST["lastname"];
                 $this->firstname = $_POST["firstname"];
                 $this->email = $_POST["email"];
                 $this->password = $_POST["password"];
                 $this->confirmPassword = $_POST["confirmPassword"];
-
+                    
 
                 //xét nếu trống form
                 if($this->emptyInput($this->lastname, $this->firstname, $this->email, $this->password, $this->confirmPassword) == true)
@@ -102,10 +103,9 @@
                     header("Location: /Php2/Assm2/mvc_simple/register?status_register=email_exists");
                     exit();
                 }
-
+                
                 //nếu thoả mãn tất cả thì đăng ký người dùng
                 $isRegistered = $this->registerModel->insertUser($this->lastname, $this->firstname, $this->email, $this->password);
-
                 //nếu đăng ký thành công
                 if($isRegistered){
                     header("Location: /Php2/Assm2/mvc_simple/register?status_register=success");
@@ -115,6 +115,9 @@
                     header("Location: /Php2/Assm2/mvc_simple/register?status_register=error");
                     exit();
                 }
+            }catch(PDOException $e){
+                echo "Lỗi". $e->getMessage();
+                echo "Lỗi ở file".$e->getFile();
             }
         }
 
@@ -133,9 +136,6 @@
         public function matchPassword($password, $confirmPassword): bool{
             return $password === $confirmPassword;
         }
-
-
-        //chạy hàm hiển thị bình luận của sản phẩm
 
     }
 ?>

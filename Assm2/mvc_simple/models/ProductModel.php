@@ -149,5 +149,29 @@
             $stmt->execute($params);
             return $stmt->fetchColumn();
         }
+
+        //hàm tìm kiếm sản phẩm trong backend
+        public function search_products($keyword) {
+            $sql = "SELECT p.*, c.name AS category_name 
+                    FROM products p 
+                    JOIN categories c ON p.category_id = c.id 
+                    WHERE p.name LIKE :keyword 
+                    ORDER BY p.id DESC";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([':keyword' => '%' . $keyword . '%']);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        //hàm lọc theo danh mục trong backend
+        public function filter_by_category($categoryId) {
+            $sql = "SELECT p.*, c.name AS category_name 
+                    FROM products p 
+                    JOIN categories c ON p.category_id = c.id 
+                    WHERE p.category_id = :cat_id 
+                    ORDER BY p.id DESC";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([':cat_id' => $categoryId]);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
 ?>

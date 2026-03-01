@@ -97,13 +97,23 @@
 
         //hàm lấy tất cả đơn hàng để hiển thị cho admin
         public function getAllOrders() {
-            $sql = "SELECT o.*, u.username 
+            $sql = "SELECT o.*, u.firstname 
                     FROM orders o
                     JOIN users u ON o.user_id = u.id
                     ORDER BY o.created_at DESC";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        //hàm câp nhật trạng thái đơn hàng
+        public function updateOrderStatus($orderId, $newStatus) {
+            $sql = "UPDATE orders SET status = :status WHERE id = :id";
+            $stmt = $this->conn->prepare($sql);
+            return $stmt->execute([
+                ':status' => $newStatus,
+                ':id' => $orderId
+            ]);
         }
     }
 ?>

@@ -22,7 +22,6 @@
             position: fixed;
             left: 0;
             top: 0;
-            background: var(--primary-color);
             color: white;
             transition: all 0.3s;
             z-index: 1000;
@@ -63,14 +62,14 @@
 </head>
 <body>
 
-    <nav id="sidebar">
+    <nav id="sidebar" class="bg-dark">
         <div class="p-4 text-center">
             <h4 class="fw-bold"><i class="fa-solid fa-user-shield me-2"></i>ADMIN</h4>
             <hr class="border-secondary">
         </div>
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a href="admin" class="nav-link"><i class="fa-solid fa-gauge me-2"></i> Bảng điều khiển</a>
+                <a href="admin" class="nav-link"><i class="fa-solid fa-gauge me-2"></i> Trang tổng quan</a>
             </li>
             <li class="nav-item">
                 <a href="categories" class="nav-link"><i class="fa-solid fa-list me-2"></i> Quản lý danh mục</a>
@@ -79,15 +78,16 @@
                 <a href="admin_products" class="nav-link"><i class="fa-solid fa-mobile-screen me-2"></i> Quản lý sản phẩm</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link"><i class="fa-solid fa-cart-shopping me-2"></i> Quản lý đơn hàng</a>
+                <a href="admin_orders" class="nav-link"><i class="fa-solid fa-cart-shopping me-2"></i> Quản lý đơn hàng</a>
             </li>
             <li class="nav-item">
                 <a href="users" class="nav-link"><i class="fa-solid fa-users me-2"></i>Quản lý khách hàng</a>
             </li>
-            <hr class="border-secondary mx-3">
+
             <li class="nav-item">
-                <a href="home" class="nav-link"><i class="fa-solid fa-arrow-left me-2"></i> Quay lại Shop</a>
+                <a href="admin_reviews" class="nav-link"><i class="fa-solid fa-star me-2"></i>Quản lý đánh giá</a>
             </li>
+            
         </ul>
     </nav>
 

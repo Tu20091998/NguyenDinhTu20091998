@@ -28,7 +28,35 @@
         public function show_orders_page() {
             $orders = $this->orderModel->getAllOrders();
 
-            View::render("AdminOrderViewList", ["orders" => $orders]);
+            // Chuyển hướng thư mục view sang backend
+            View::setBaseDir("backend/views");
+
+            return View::render("AdminOrderViewList", ["orders" => $orders]);
+        }
+
+        //hàm hiển thị chi tiết đơn hàng
+        public function show_order_detail() {
+            $orderId = $_GET['id'];
+            $order = $this->orderModel->getOrderById($orderId);
+
+            // Chuyển hướng thư mục view sang backend
+            View::setBaseDir("backend/views");
+
+            return View::render("AdminOrderViewDetail", ["order" => $order]);
+        }
+
+        //hàm cập nhật trạng thái đơn hàng
+        public function update_order_status() {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $orderId = $_POST['order_id'];
+                $status = $_POST['status'];
+
+                $this->orderModel->updateOrderStatus($orderId, $status);
+
+                // Chuyển hướng về trang danh sách đơn hàng sau khi cập nhật
+                header("Location: admin_orders");
+                exit();
+            }
         }
     }
 ?>

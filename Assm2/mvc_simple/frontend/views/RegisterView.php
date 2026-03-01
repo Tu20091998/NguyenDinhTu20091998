@@ -8,7 +8,7 @@ use core\Form;
             <div class="card-body p-5">
                 <div class="text-center mb-4">
                     <i class="fa-solid fa-user-plus fa-4x text-warning mb-3"></i>
-                    <h2 class="card-title fw-bold text-dark text-uppercase">Đăng ký thành viên</h2>
+                    <h3 class="card-title fw-bold text-dark text-uppercase">Đăng ký thành viên</h3>
                     <p class="text-muted small">Gia nhập cộng đồng PolyXShop để nhận nhiều ưu đãi</p>
                 </div>
 
@@ -62,13 +62,6 @@ use core\Form;
 </div>
 
 <style>
-    /* Đồng bộ kiểu dáng input cho cả trang Register */
-    .form-control {
-        border-radius: 10px;
-        padding: 10px 15px;
-        border: 1px solid #dee2e6;
-        transition: all 0.3s;
-    }
     .form-control:focus {
         border-color: #ffc107;
         box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);

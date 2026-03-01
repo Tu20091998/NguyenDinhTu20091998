@@ -22,17 +22,34 @@
         }
 
         .input-search{
-            transition: box-shadow 0.3s ease;
-            margin-left: 2rem;
-            margin-right: 2rem;
+            padding:0.5rem;
+        }
+
+        .menu-nav{
+            display: flex;
+            transition: all 0.3s ease;
+            justify-content: end;
+        }
+
+        .top-banner-container img {
+            display: block;
+            margin: auto;
+            max-width: 100%;
         }
     </style>
 <body>
     <!-- Header với navbar -->
     <header class="sticky-top shadow-sm">
+        <div class="top-banner-container w-100">
+            <a href="product_detail?id=10" class="d-block"> 
+                <img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Banner/8c/c3/8cc3ce97367dd546c21a107ec457bd33.png" 
+                    alt="Khuyến mãi Galaxy S26 Ultra" 
+                    class="img-fluid w-100 d-block shadow-sm">
+            </a>
+        </div>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand fw-bold fs-3 d-flex align-items-center" href="home">
+                <a class="navbar-brand fw-bold fs-3 d-flex align-items-center fst-italic" href="home">
                     <i class="fa-solid fa-mobile-screen-button text-warning me-2"></i>
                     <span class="text-white text-uppercase">Poly</span><span class="text-warning text-uppercase">X</span><span class="text-uppercase">Shop</span>
                 </a>
@@ -42,18 +59,19 @@
                 </button>
 
                 <!-- Menu điều hướng -->
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="menu-nav collapse navbar-collapse" id="navbarNav">
                     <!-- Form tìm kiếm -->
-                    <form class="d-flex my-2 my-lg-0 col-lg-5" action="search" method="GET">
-                        <div class="input-group input-search">
-                            <input class="form-control border-1 rounded-start-pill ps-4" type="search" name="keyword" 
+                    <form class="input-search d-flex my-3 my-lg-0 col-lg-5" action="search" method="GET">
+                        <div class="input-group">
+                            <input class="form-control border-0 rounded-start-pill" type="search" name="keyword" 
                                 placeholder="Tìm iPhone, Samsung..." aria-label="Search">
                             <button class="btn btn-warning rounded-end-pill px-4" type="submit">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
                         </div>
                     </form>
-                    <ul class="navbar-nav ms-auto align-items-center">
+
+                    <ul class="navbar-nav align-items-center">
 
                         <li class="nav-item">
                             <a class="nav-link px-3 active" href="products"><i class="fa-solid fa-house me-1"></i> Sản phẩm</a>
@@ -61,14 +79,6 @@
 
                         <li class="nav-item">
                             <a class="nav-link px-3 active" href="cart"><i class="fa-solid fa-cart-shopping me-1"></i> Giỏ hàng</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link px-3 active" href="orders"><i class="fa-solid fa-receipt me-1"></i> Đơn hàng</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link px-3 active" href="contact"><i class="fa-solid fa-phone me-1"></i> Liên hệ</a>
                         </li>
 
                         <div class="d-none d-lg-block border-start border-secondary mx-2" style="height: 20px;"></div>
@@ -108,7 +118,7 @@
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6">
                     <h2 class="text-uppercase fw-bold mb-4 text-warning">
-                        <a class="navbar-brand fw-bold fs-3 d-flex align-items-center" href="home">
+                        <a class="navbar-brand fw-bold fs-3 d-flex align-items-center fst-italic" href="home">
                             <i class="fa-solid fa-mobile-screen-button text-warning me-2"></i>
                             <span class="text-white">Poly</span><span class="text-warning">X</span><span>Shop</span>
                         </a>
@@ -169,10 +179,10 @@
 
             <div class="row align-items-center">
                 <div class="col-md-6 text-center text-md-start">
-                    <p class="small mb-0 text-secondary">&copy; 2026 PolyXShop. Thiết kế bởi Nguyễn Đình Tú.</p>
+                    <p class="small mb-0 text-secondary">&copy; 2026 PolyXShop. Liên hệ ngay để nhận ưu đãi.</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
-                    <span class="small text-secondary">Đồ án Web Programming - FPT Polytechnic</span>
+                    <span class="small text-secondary">Bản quyền thuộc về - FPT Polytechnic</span>
                 </div>
             </div>
         </div>
@@ -181,5 +191,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </body>
 </html>

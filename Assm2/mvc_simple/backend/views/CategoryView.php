@@ -1,8 +1,8 @@
 <div class="container mt-5 animate__animated animate__fadeIn">
     <div class="row">
-        <h1 class="fw-bold mb-4 text-dark text-center text-uppercase mb-5">
-            Quản lý danh mục - PolyXShop
-        </h1>
+        <h3 class="fw-bold mb-4 text-dark text-center text-uppercase mb-5">
+            <i class="fa-solid fa-list me-2 text-warning"></i> Quản lý danh mục - PolyXShop
+        </h3>
 
         <?php if (!empty($message)): ?>
             <?= $message ?>
@@ -11,7 +11,7 @@
         <div class="col-md-4 mb-4">
             <div class="card shadow border-0 rounded-4">
                 <div class="card-body p-4">
-                    <h4 class="fw-bold mb-4 text-dark">
+                    <h4 class="fw-bold mb-4 text-dark text-uppercase">
                         <i class="fa-solid fa-folder-plus text-warning me-2"></i>Thêm danh mục
                     </h4>
                     

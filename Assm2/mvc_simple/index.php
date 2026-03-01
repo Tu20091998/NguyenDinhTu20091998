@@ -1,5 +1,10 @@
 
     <?php
+        //ép lỗi hiển thị
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+
         //khởi tạo session
         session_start();
 
@@ -26,6 +31,8 @@
         use backend\controllers\ProductController as BackendProductController;
         use backend\controllers\CategoryController;
         use backend\controllers\UserController as BackendUserController;
+        use backend\controllers\OrderController as BackendOrderController;
+        use backend\controllers\ReviewController;
         
         use core\Route;
 
@@ -72,7 +79,6 @@
         $router->get("/search", [FrontendProductController::class, "show_product_list"]);
 
         //đăng ký route cho quản lý đơn hàng
-        $router->get("/orders", [OrderController::class, "orders"]);
         $router->get("/order_detail", [OrderController::class, "order_detail"]);
 
         //--------------------------------------------------------------------------------------------
@@ -87,6 +93,7 @@
         $router->get("/edit_product", [BackendProductController::class, "edit_product"]);
         $router->post("/update_product", [BackendProductController::class, "update_product"]);
         $router->get("/delete_product", [BackendProductController::class, "delete_product"]);
+        $router->get("/search_product_admin", [BackendProductController::class, "show_product_page"]);
 
         //đăng ký route cho quản lý danh mục
         $router->get("/categories", [CategoryController::class, "show_category_page"]);
@@ -98,8 +105,16 @@
         //đăng ký route cho quản lý người dùng
         $router->get("/users", [BackendUserController::class, "show_user_page"]);
         $router->get("/toggle_user_status", [BackendUserController::class, "toggle_user_status"]);
-        
 
+        //đăng ký route cho quản lý đơn hàng
+        $router->get("/admin_orders", [BackendOrderController::class, "show_orders_page"]);
+        $router->get("/admin_order_detail", [BackendOrderController::class, "show_order_detail"]);
+        $router->post("/update_order_status", [BackendOrderController::class, "update_order_status"]);
+
+        //đăng ký route cho quản lý đánh giá
+        $router->get("/admin_reviews", [ReviewController::class, "show_reviews_page"]);
+        $router->get("/toggle_review", [ReviewController::class, "toggle_review_status"]);
+        
         //xử lý route
         try {
             // Lấy URI và method thực tế từ hệ thống

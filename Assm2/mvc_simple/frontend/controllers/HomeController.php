@@ -13,6 +13,7 @@
 
         //hàm hiển thị trang chủ
         public function index() {
+
             // Chuyển hướng thư mục view sang frontend
             View::setBaseDir("frontend/views");
 

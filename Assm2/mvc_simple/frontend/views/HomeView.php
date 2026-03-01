@@ -28,14 +28,27 @@
         animation: pulse-red 2s infinite;
     }
 
+    /* Hiệu ứng zoom nhẹ cho ảnh khi hover */
+    .img-fluid {
+        transition: transform 0.3s ease;
+    }
+    .img-fluid:hover {
+        transform: scale(1.02);
+    }
+
+    .image-contact{
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        width: 80%;
+        height: 80%;
+    }
+
     @keyframes pulse-red {
         0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); }
         70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(220, 53, 69, 0); }
         100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
     }
 </style>
-    <div class="container mt-5">
-        <h1 class="text-center mb-4 text-uppercase fw-bold"><?php echo $title; ?></h1>
+    <div class="container mt-6">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -68,7 +81,7 @@
 
     <!-- Danh sách sản phẩm bán chạy-->
     <div class="container mt-5 bg-white shadow-sm rounded-4 p-4">
-        <h2 class="text-center mb-4 text-uppercase fw-bold"><i class="fa-solid fa-fire text-danger me-2"></i>Sản phẩm bán chạy</h2>
+        <h3 class="text-center mb-4 text-uppercase fw-bold"><i class="fa-solid fa-fire text-danger me-2"></i>Sản phẩm bán chạy</h3>
 
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
             <?php if (!empty($products_seller)): ?>
@@ -116,7 +129,7 @@
     
     <!--Cam kết-->
     <div class="container mt-5 py-4 bg-light rounded-4">
-        <h2 class="text-center mb-4 fw-bold text-uppercase"><i class="fa-solid fa-handshake text-warning me-2"></i>Cam kết của Shop</h2>
+        <h3 class="text-center mb-4 fw-bold text-uppercase"><i class="fa-solid fa-handshake text-warning me-2"></i>Cam kết của Shop</h3>
         <div class="row g-4 text-center">
             <div class="col-md-3">
                 <div class="p-3">
@@ -151,7 +164,7 @@
     
     <!-- Đánh giá của khách hàng -->
     <div class="container mt-5 mb-5 bg-light rounded-4 p-4">
-        <h2 class="text-center mb-5 text-uppercase fw-bold"><i class="fa-solid fa-comments text-warning me-2"></i>Khách hàng nói về PolyXShop</h2>
+        <h3 class="text-center mb-5 text-uppercase fw-bold"><i class="fa-solid fa-comments text-warning me-2"></i>Khách hàng nói về PolyXShop</h3>
         <div class="row g-4">
             <div class="col-md-4">
                 <div class="card border-0 shadow-sm rounded-4 p-3">
@@ -210,24 +223,61 @@
         </div>
     </div>
 
-    <div class="container mt-5 py-5 border-top">
-    <div class="row align-items-center">
-        <div class="col-md-6 mb-4 mb-md-0 text-center">
-            <img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Banner/d1/02/d10256aa180524e900b52d52234a4ae4.png" 
-                class="img-fluid rounded-4 shadow w-75 h-75" alt="Về PolyXShop">
-        </div>
-        <div class="col-md-6 ps-md-5">
-            <h3 class="text-warning fw-bold text-uppercase"><i class="fa-solid fa-building text-warning me-2"></i>Về chúng tôi</h3>
-            <h2 class="fw-bold mb-4">PolyXShop – Trải nghiệm công nghệ đỉnh cao tại Đà Nẵng</h2>
-            <p class="text-muted">
-                Được thành lập từ niềm đam mê công nghệ, <strong>PolyXShop</strong> tự hào là hệ thống bán lẻ điện thoại, máy tính bảng và phụ kiện uy tín hàng đầu. Chúng tôi không chỉ bán sản phẩm, chúng tôi trao đi sự tin tâm.
-            </p>
-            <ul class="list-unstyled mb-4">
-                <li class="mb-2"><i class="fa-solid fa-check-double text-warning me-2"></i> Sản phẩm chính hãng, nguồn gốc rõ ràng.</li>
-                <li class="mb-2"><i class="fa-solid fa-check-double text-warning me-2"></i> Đội ngũ kỹ thuật viên giàu kinh nghiệm từ FPT Polytechnic.</li>
-                <li class="mb-2"><i class="fa-solid fa-check-double text-warning me-2"></i> Chính sách hậu mãi tận tâm, bảo hành nhanh chóng.</li>
-            </ul>
-            <a href="contact" class="btn btn-dark rounded-pill px-4 py-2 fw-bold">Tìm hiểu thêm</a>
+    <div class="container mt-5 py-5 border-top animate__animated animate__fadeIn">
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4 mb-md-0 text-center">
+                <div class="image-contact position-relative d-inline-block">
+                    <img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Banner/d1/02/d10256aa180524e900b52d52234a4ae4.png" 
+                        class="img-fluid rounded-4 shadow-lg" alt="Liên hệ PolyXShop">
+                    <div class="position-absolute bottom-0 start-0 bg-warning text-dark p-3 rounded-3 shadow fw-bold m-3">
+                        <i class="fa-solid fa-clock me-1"></i> Hỗ trợ 24/7
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 ps-md-5">
+                <h3 class="text-warning fw-bold text-uppercase">
+                    <i class="fa-solid fa-headset me-2"></i> Kết nối ngay
+                </h3>
+                <h2 class="fw-bold mb-4">Bạn cần tư vấn về iPhone hay Samsung tại Đà Nẵng?</h2>
+                <p class="text-muted mb-4">
+                    Đội ngũ kỹ thuật viên từ <strong>FPT Polytechnic</strong> của PolyXShop luôn sẵn sàng lắng nghe và giải đáp mọi thắc mắc của bạn về sản phẩm, dịch vụ và chính sách trả góp.
+                </p>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-sm-6">
+                        <div class="p-3 border rounded-4 bg-light shadow-sm h-100">
+                            <h6 class="fw-bold mb-2"><i class="fa-solid fa-phone text-warning me-2"></i>Hotline trực tuyến</h6>
+                            <a href="tel:0338620188" class="text-decoration-none text-dark fw-bold fs-5">0338.620.188</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="p-3 border rounded-4 bg-light shadow-sm h-100">
+                            <h6 class="fw-bold mb-2"><i class="fa-solid fa-comment-dots text-primary me-2"></i>Chat qua Zalo</h6>
+                            <a href="https://zalo.me/0338620188" class="text-decoration-none text-primary fw-bold fs-5">Nhắn tin ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="contact" class="btn btn-warning rounded-pill px-4 py-3 fw-bold shadow-sm">
+                        <i class="fa-solid fa-paper-plane me-2"></i>GỬI LỜI NHẮN TRỰC TUYẾN
+                    </a>
+                    <a href="https://www.facebook.com/messages/t/polyxshop" class="btn btn-outline-dark rounded-pill px-4 py-3 fw-bold">
+                        <i class="fa-brands fa-facebook-messenger me-2"></i>MESSENGER
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+
+    <script>
+        window.addEventListener("load", function () {
+            confetti({
+                particleCount: 150,
+                spread: 150,
+                origin: { y: 0.6 }
+            });
+        });
+    </script>
+

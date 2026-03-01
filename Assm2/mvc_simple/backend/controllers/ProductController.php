@@ -77,12 +77,23 @@
                     break;
                 }
             }
+            //lấy từ khóa tìm kiếm nếu có
+            $keyword = $_GET['keyword'] ?? '';
+
+            //lấy danh mục nếu có
+            $categoryId = $_GET['cat'] ?? null;
 
             // Chuyển hướng thư mục view sang backend
             View::setBaseDir("backend/views");
             
-            //lấy danh sách sản phẩm để hiển thị
-            $products = $this->productModel->get_all_products();
+            //lấy danh mục nếu có
+            if ($keyword) {
+                $products = $this->productModel->search_products($keyword);
+            } else if ($categoryId) {
+                $products = $this->productModel->filter_by_category($categoryId);
+            } else {
+                $products = $this->productModel->get_all_products();
+            }
 
             //lấy danh mục để hiển thị
             $categories = $this->categoryModel->get_all_categories();

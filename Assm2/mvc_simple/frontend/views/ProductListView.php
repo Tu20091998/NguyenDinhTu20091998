@@ -2,9 +2,9 @@
     <div class="row">
         <div class="col-lg-3 mb-4">
             <div class="card border-0 shadow-sm rounded-4 p-3">
-                <h2 class="fw-bold mb-4 px-2 text-uppercase">
+                <h3 class="fw-bold mb-4 px-2 text-uppercase">
                     <i class="fa-solid fa-layer-group text-warning me-2"></i>Danh mục
-                </h2>
+                </h3>
                 <div class="list-group list-group-flush shadow-none">
                     <a href="products" class="list-group-item list-group-item-action border-0 rounded-3 mb-1 <?= !isset($_GET['cat']) ? 'bg-warning fw-bold' : '' ?>">
                         <i class="fa-solid fa-border-all me-2"></i> Tất cả sản phẩm
@@ -27,7 +27,7 @@
 
         <div class="col-lg-9">
             <div class="d-flex justify-content-between align-items-center mb-4 px-2">
-                <h2 class="fw-bold text-dark mb-0 text-uppercase"><i class="fa-solid fa-list me-2 text-warning"></i>Danh sách sản phẩm</h2>
+                <h3 class="fw-bold text-dark mb-0 text-uppercase"><i class="fa-solid fa-list me-2 text-warning"></i>Danh sách sản phẩm</h3>
                 <!--đếm số sản phẩm-->
                 <span class="badge bg-warning text-dark rounded-pill">Hiện đang có <?= count($products) ?> sản phẩm</span>
             </div>
