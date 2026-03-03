@@ -13,16 +13,18 @@ class AdminController
     public function __construct()
     {
         $this->conn = new Database();
-    }
+        $this->conn->connect();
 
-    //hàm hiển thị admin view
-    public function index()
-    {
         //xét nếu không phải admin thì bắt đăng nhập lại
         if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 1) {
             header("Location: login?status=not_admin_login");
             exit;
         }
+    }
+
+    //hàm hiển thị admin view
+    public function index()
+    {
 
         //gọi hàm lấy toàn bộ sản phẩm
         $products = $this->conn->getAllProducts();

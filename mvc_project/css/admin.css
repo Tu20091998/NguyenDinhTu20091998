@@ -1,0 +1,154 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    background: #f4f6fb;
+    padding: 40px;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    background: #ffffff;
+    padding: 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+}
+
+/* Title */
+h2 {
+    margin-bottom: 20px;
+    color: #5b3cc4;
+}
+
+/* Message */
+.message {
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border-left: 5px solid;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.success {
+    background: #e9f9ee;
+    border-color: #28a745;
+    color: #1e7e34;
+}
+
+.error {
+    background: #fdeaea;
+    border-color: #dc3545;
+    color: #a71d2a;
+}
+
+/* Form */
+form {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+form input {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    flex: 1;
+    transition: 0.3s;
+}
+
+form input:focus {
+    border-color: #7b5cff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(123, 92, 255, 0.15);
+}
+
+form button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(135deg, #7b5cff, #c84dff);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(123, 92, 255, 0.3);
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+table thead {
+    background: #7b5cff;
+    color: white;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: center;
+}
+
+table tr:nth-child(even) {
+    background: #f9f9ff;
+}
+
+table tr:hover {
+    background: #f1edff;
+}
+
+/* Action buttons */
+.action-btn {
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 3px;
+}
+
+.edit {
+    background: #ffc107;
+    color: #333;
+}
+
+.delete {
+    background: #dc3545;
+    color: white;
+}
+
+.action-btn:hover {
+    opacity: 0.85;
+}
+
+/* Logout button */
+.logout-btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 10px 18px;
+    background: #dc3545;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: #b02a37;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(220, 53, 69, 0.3);
+}

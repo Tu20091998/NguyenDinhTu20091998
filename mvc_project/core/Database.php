@@ -8,7 +8,7 @@ class Database
 {
     protected $conn;
 
-    public function __construct()
+    public function connect()
     {
         $dsn = "mysql:host=localhost;port=3307;dbname=mvc_project;charset=utf8mb4";
         $user = "root";
@@ -27,35 +27,53 @@ class Database
     // Lấy user theo email
     public function getUser($email)
     {
-        $sql = "SELECT * FROM users WHERE email = :email";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([":email" => $email]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        try{
+            $sql = "SELECT * FROM users WHERE email = :email";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([":email" => $email]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }catch(PDOException $e){
+            echo "Lỗi : ".$e->getMessage();
+            echo "Lỗi ở file". $e->getFile();
+        }
+        
     }
 
     // Thêm sản phẩm
     public function insertUser($email, $password)
     {
-        //mã hoá mật khẩu
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        try{
+            //mã hoá mật khẩu
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO users (email, password) VALUES (:email, :password)";
-        $stmt = $this->conn->prepare($sql);
-        return $stmt->execute([
-            ":email" => $email,
-            ":password" => $hashedPassword,
-        ]);
+            $sql = "INSERT INTO users (email, password) VALUES (:email, :password)";
+            $stmt = $this->conn->prepare($sql);
+            return $stmt->execute([
+                ":email" => $email,
+                ":password" => $hashedPassword,
+            ]);
+        }catch(PDOException $e){
+            echo "Lỗi : ".$e->getMessage();
+            echo "Lỗi ở file". $e->getFile();
+        }
+        
     }
 
     // Thêm sản phẩm
     public function insertProduct($name, $price)
     {
-        $sql = "INSERT INTO products (name, price) VALUES (:name, :price)";
-        $stmt = $this->conn->prepare($sql);
-        return $stmt->execute([
-            ":name" => $name,
-            ":price" => $price
-        ]);
+        try{
+            $sql = "INSERT INTO products (name, price) VALUES (:name, :price)";
+            $stmt = $this->conn->prepare($sql);
+            return $stmt->execute([
+                ":name" => $name,
+                ":price" => $price
+            ]);
+        }catch(PDOException $e){
+            echo "Lỗi : ".$e->getMessage();
+            echo "Lỗi ở file". $e->getFile();
+        }
+        
     }
 
     //lấy toàn bộ sản phẩm trong giỏ

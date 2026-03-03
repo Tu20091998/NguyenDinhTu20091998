@@ -37,7 +37,7 @@
             $controller->addProduct();
         break;
 
-        case '/logout':
+        case '/admin_logout':
             $controller = new LoginController();
             $controller->admin_logout();
         break;

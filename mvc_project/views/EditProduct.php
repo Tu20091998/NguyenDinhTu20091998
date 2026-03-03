@@ -1,17 +1,31 @@
-<h2>Sửa sản phẩm</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Trang sửa sản phẩm</title>
+        <link rel="stylesheet" href="css/edit_product.css">
+</head>
+<body>
+        <div class="container">
+                <h2>Sửa sản phẩm</h2>
 
-<form action="update_product" method="POST">
-    <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
+                <form action="update_product" method="POST" class="edit-form">
+                        <input type="hidden" name="id" value="<?= $product['id']; ?>">
 
-    <label>Tên sản phẩm:</label><br>
-    <input type="text" name="name" 
-            value="<?php echo $product['name']; ?>" required><br><br>
+                        <label>Tên sản phẩm:</label>
+                        <input type="text" name="name" 
+                                value="<?= $product['name']; ?>" required>
 
-    <label>Giá:</label><br>
-    <input type="number" name="price" 
-            value="<?php echo $product['price']; ?>" required><br><br>
+                        <label>Giá:</label>
+                        <input type="number" name="price" 
+                                value="<?= $product['price']; ?>" required>
 
-    <button type="submit">Cập nhật</button>
-</form>
-<br>
-<a href="admin">Quay lại</a>
+                        <button type="submit" class="update-btn">Cập nhật</button>
+                </form>
+
+                <a href="admin" class="back-btn">← Quay lại</a>
+        </div>
+</body>
+</html>
+
